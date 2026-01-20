@@ -1,2001 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Globalcare Physio - Knowledge for Better Movement</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <style>
-        /* ===== RESET & BASE STYLES ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    /* Medical-themed color palette */
-    --primary-blue: #2563eb;
-    --secondary-blue: #3b82f6;
-    --light-blue: #dbeafe;
-    --dark-blue: #1e40af;
-    --medical-green: #10b981;
-    --light-green: #d1fae5;
-    --white: #ffffff;
-    --light-gray: #f8fafc;
-    --medium-gray: #64748b;
-    --dark-gray: #1e293b;
-    --text-dark: #0f172a;
-    --text-light: #64748b;
-    
-    /* Typography */
-    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    
-    /* Spacing */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 1.5rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 3rem;
-    --spacing-xxl: 4rem;
-    
-    /* Border radius */
-    --radius-sm: 0.375rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 0.75rem;
-    --radius-xl: 1rem;
-    
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: var(--font-primary);
-    line-height: 1.6;
-    color: var(--text-dark);
-    background-color: var(--white);
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
-}
-
-/* ===== NAVIGATION ===== */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--light-blue);
-    z-index: 1000;
-    transition: all 0.3s ease;
-}
-
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-}
-
-.nav-logo {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-blue);
-}
-
-.nav-logo i {
-    font-size: 1.75rem;
-    color: var(--medical-green);
-}
-
-.nav-menu {
-    display: flex;
-    gap: var(--spacing-lg);
-}
-
-.nav-link {
-    text-decoration: none;
-    color: var(--text-dark);
-    font-weight: 500;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--radius-md);
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.nav-link:hover {
-    color: var(--primary-blue);
-    background-color: var(--light-blue);
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: var(--primary-blue);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-}
-
-.nav-link:hover::after {
-    width: 80%;
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.bar {
-    width: 25px;
-    height: 3px;
-    background: var(--primary-blue);
-    margin: 3px 0;
-    transition: 0.3s;
-}
-
-/* ===== HERO SECTION ===== */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: var(--spacing-xxl) var(--spacing-md);
-    background: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 100%);
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23dbeafe" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-    opacity: 0.3;
-}
-
-.hero-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-xxl);
-    align-items: center;
-    position: relative;
-    z-index: 1;
-}
-
-.hero-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: var(--spacing-md);
-    color: var(--text-dark);
-}
-
-.hero-description {
-    font-size: 1.25rem;
-    color: var(--text-light);
-    margin-bottom: var(--spacing-xl);
-    line-height: 1.7;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: var(--spacing-md);
-    flex-wrap: wrap;
-}
-
-.hero-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hero-image i {
-    font-size: 15rem;
-    color: var(--primary-blue);
-    opacity: 0.1;
-}
-
-/* ===== BUTTONS ===== */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-    padding: var(--spacing-md) var(--spacing-lg);
-    border: none;
-    border-radius: var(--radius-lg);
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-primary {
-    background: var(--primary-blue);
-    color: var(--white);
-}
-
-.btn-primary:hover {
-    background: var(--dark-blue);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-}
-
-.btn-secondary {
-    background: var(--white);
-    color: var(--primary-blue);
-    border: 2px solid var(--primary-blue);
-}
-
-.btn-secondary:hover {
-    background: var(--primary-blue);
-    color: var(--white);
-    transform: translateY(-2px);
-}
-
-/* ===== SECTIONS ===== */
-section {
-    padding: var(--spacing-xxl) 0;
-}
-
-.section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: var(--spacing-sm);
-    color: var(--text-dark);
-}
-
-.section-subtitle {
-    font-size: 1.125rem;
-    text-align: center;
-    color: var(--text-light);
-    margin-bottom: var(--spacing-xl);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* ===== CONDITIONS SECTION ===== */
-.conditions-section {
-    background: var(--light-gray);
-}
-
-.conditions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--spacing-lg);
-}
-
-.condition-card {
-    background: var(--white);
-    padding: var(--spacing-xl);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-md);
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-}
-
-.condition-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
-    border-color: var(--light-blue);
-}
-
-.condition-icon {
-    width: 60px;
-    height: 60px;
-    background: var(--light-blue);
-    border-radius: var(--radius-lg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: var(--spacing-md);
-}
-
-.condition-icon i {
-    font-size: 1.5rem;
-    color: var(--primary-blue);
-}
-
-.condition-card h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: var(--spacing-sm);
-    color: var(--text-dark);
-}
-
-.condition-card p {
-    color: var(--text-light);
-    margin-bottom: var(--spacing-md);
-    line-height: 1.6;
-}
-
-.learn-more {
-    color: var(--primary-blue);
-    text-decoration: none;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-    transition: all 0.3s ease;
-}
-
-.learn-more:hover {
-    color: var(--dark-blue);
-    gap: var(--spacing-sm);
-}
-
-/* ===== TREATMENTS SECTION ===== */
-.treatments-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-lg);
-}
-
-.treatment-card {
-    text-align: center;
-    padding: var(--spacing-xl);
-    background: var(--white);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-md);
-    transition: all 0.3s ease;
-}
-
-.treatment-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
-}
-
-.treatment-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, var(--light-blue), var(--light-green));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto var(--spacing-md);
-}
-
-.treatment-icon i {
-    font-size: 2rem;
-    color: var(--primary-blue);
-}
-
-.treatment-card h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: var(--spacing-sm);
-    color: var(--text-dark);
-}
-
-/* ===== MEDICAL TERMS SECTION ===== */
-.terms-section {
-    background: var(--light-gray);
-}
-
-.search-container {
-    max-width: 600px;
-    margin: 0 auto var(--spacing-xl);
-    display: flex;
-    gap: var(--spacing-sm);
-}
-
-.search-input {
-    flex: 1;
-    padding: var(--spacing-md);
-    border: 2px solid var(--light-blue);
-    border-radius: var(--radius-lg);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.search-input:focus {
-    outline: none;
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-.search-btn {
-    padding: var(--spacing-md) var(--spacing-lg);
-    background: var(--primary-blue);
-    color: var(--white);
-    border: none;
-    border-radius: var(--radius-lg);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.search-btn:hover {
-    background: var(--dark-blue);
-}
-
-.terms-alphabet {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--spacing-xs);
-    margin-bottom: var(--spacing-xl);
-}
-
-.alphabet-btn {
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border: 2px solid var(--light-blue);
-    background: var(--white);
-    color: var(--text-dark);
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-}
-
-.alphabet-btn:hover,
-.alphabet-btn.active {
-    background: var(--primary-blue);
-    color: var(--white);
-    border-color: var(--primary-blue);
-}
-
-.terms-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--spacing-lg);
-}
-
-.term-card {
-    background: var(--white);
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    border-left: 4px solid var(--primary-blue);
-    transition: all 0.3s ease;
-}
-
-.term-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateX(5px);
-}
-
-.term-card h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: var(--spacing-xs);
-    color: var(--text-dark);
-}
-
-.term-card p {
-    color: var(--text-light);
-    line-height: 1.6;
-}
-
-/* ===== ARTICLES SECTION ===== */
-.articles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: var(--spacing-xl);
-}
-
-.article-card {
-    background: var(--white);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-md);
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.article-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
-}
-
-.article-image {
-    height: 200px;
-    background: linear-gradient(135deg, var(--light-blue), var(--light-green));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.article-image i {
-    font-size: 4rem;
-    color: var(--primary-blue);
-    opacity: 0.7;
-}
-
-.article-content {
-    padding: var(--spacing-xl);
-}
-
-.article-content h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: var(--spacing-md);
-    color: var(--text-dark);
-}
-
-.article-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
-    font-size: 0.875rem;
-    color: var(--text-light);
-}
-
-.article-meta span {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-}
-
-.read-more {
-    color: var(--primary-blue);
-    text-decoration: none;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-    transition: all 0.3s ease;
-}
-
-.read-more:hover {
-    color: var(--dark-blue);
-    gap: var(--spacing-sm);
-}
-
-/* ===== ABOUT SECTION ===== */
-.about-section {
-    background: var(--light-gray);
-}
-
-.about-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-xxl);
-    align-items: center;
-}
-
-.about-text {
-    max-width: 600px;
-}
-
-.about-intro {
-    font-size: 1.125rem;
-    margin-bottom: var(--spacing-lg);
-    color: var(--text-light);
-    line-height: 1.7;
-}
-
-.mission-statement {
-    background: var(--white);
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
-    margin: var(--spacing-lg) 0;
-    border-left: 4px solid var(--medical-green);
-}
-
-.mission-statement h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: var(--spacing-sm);
-    color: var(--text-dark);
-}
-
-.about-stats {
-    display: flex;
-    gap: var(--spacing-xl);
-    margin-top: var(--spacing-lg);
-}
-
-.stat {
-    text-align: center;
-}
-
-.stat-number {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--primary-blue);
-}
-
-.stat-label {
-    font-size: 0.875rem;
-    color: var(--text-light);
-}
-
-.about-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.about-image i {
-    font-size: 12rem;
-    color: var(--medical-green);
-    opacity: 0.2;
-}
-
-/* ===== CONTACT SECTION ===== */
-.contact-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: var(--spacing-xxl);
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.contact-form {
-    background: var(--white);
-    padding: var(--spacing-xl);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-md);
-}
-
-.form-group {
-    margin-bottom: var(--spacing-lg);
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: var(--spacing-xs);
-    font-weight: 500;
-    color: var(--text-dark);
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: var(--spacing-md);
-    border: 2px solid var(--light-blue);
-    border-radius: var(--radius-md);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    font-family: var(--font-primary);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-}
-
-.info-item {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-lg);
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-}
-
-.info-item i {
-    font-size: 1.5rem;
-    color: var(--primary-blue);
-    width: 30px;
-}
-
-.info-item h4 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-    color: var(--text-dark);
-}
-
-.info-item p {
-    color: var(--text-light);
-}
-
-/* ===== FOOTER ===== */
-.footer {
-    background: var(--text-dark);
-    color: var(--white);
-    padding: var(--spacing-xxl) 0 var(--spacing-lg);
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-xl);
-    margin-bottom: var(--spacing-xl);
-}
-
-.footer-section h3,
-.footer-section h4 {
-    margin-bottom: var(--spacing-md);
-    color: var(--white);
-}
-
-.footer-section ul {
-    list-style: none;
-}
-
-.footer-section ul li {
-    margin-bottom: var(--spacing-xs);
-}
-
-.footer-section ul li a {
-    color: var(--text-light);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-section ul li a:hover {
-    color: var(--secondary-blue);
-}
-
-.social-links {
-    display: flex;
-    gap: var(--spacing-md);
-}
-
-.social-links a {
-    width: 40px;
-    height: 40px;
-    background: var(--primary-blue);
-    color: var(--white);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.social-links a:hover {
-    background: var(--secondary-blue);
-    transform: translateY(-2px);
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: var(--spacing-lg);
-    border-top: 1px solid var(--medium-gray);
-    color: var(--text-light);
-}
-
-.footer-bottom p {
-    margin-bottom: var(--spacing-xs);
-}
-
-/* ===== BACK TO TOP ===== */
-.back-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: var(--primary-blue);
-    color: var(--white);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    box-shadow: var(--shadow-lg);
-    transition: all 0.3s ease;
-    z-index: 999;
-}
-
-.back-to-top:hover {
-    background: var(--dark-blue);
-    transform: translateY(-3px);
-}
-
-.back-to-top.show {
-    display: flex;
-}
-
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
-    
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 70px;
-        flex-direction: column;
-        background-color: var(--white);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: var(--shadow-lg);
-        padding: var(--spacing-lg) 0;
-    }
-    
-    .nav-menu.active {
-        left: 0;
-    }
-    
-    .hero-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: var(--spacing-xl);
-    }
-    
-    .hero-title {
-        font-size: 2.5rem;
-    }
-    
-    .hero-image i {
-        font-size: 8rem;
-    }
-    
-    .about-content,
-    .contact-content {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-    
-    .conditions-grid,
-    .treatments-grid,
-    .terms-grid,
-    .articles-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .about-stats {
-        justify-content: center;
-    }
-    
-    .terms-alphabet {
-        justify-content: center;
-    }
-    
-    .alphabet-btn {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.875rem;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .hero-buttons {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 0 var(--spacing-sm);
-    }
-    
-    .hero {
-        padding: var(--spacing-xl) var(--spacing-sm);
-    }
-    
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    .hero-description {
-        font-size: 1.125rem;
-    }
-    
-    section {
-        padding: var(--spacing-xl) 0;
-    }
-    
-    .condition-card,
-    .treatment-card,
-    .article-card,
-    .term-card {
-        padding: var(--spacing-lg);
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .social-links {
-        justify-content: center;
-    }
-}
-
-/* ===== ANIMATIONS ===== */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-/* Apply animations to elements */
-.hero-title,
-.hero-description,
-.hero-buttons {
-    animation: fadeInUp 0.8s ease-out;
-}
-
-.hero-image i {
-    animation: float 3s ease-in-out infinite;
-}
-
-.condition-card:hover .condition-icon,
-.treatment-card:hover .treatment-icon {
-    animation: pulse 0.6s ease-in-out;
-}
-
-/* ===== ACCESSIBILITY ===== */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-/* Focus styles for keyboard navigation */
-a:focus,
-button:focus,
-input:focus,
-textarea:focus {
-    outline: 2px solid var(--primary-blue);
-    outline-offset: 2px;
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-    :root {
-        --primary-blue: #0000ff;
-        --medical-green: #008000;
-        --text-dark: #000000;
-        --white: #ffffff;
-    }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-    
-    html {
-        scroll-behavior: auto;
-    }
-}
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Globalcare Physio - Your trusted source for physiotherapy knowledge, conditions, treatments, and educational articles for students and patients.">
+  <meta name="keywords" content="physiotherapy, physical therapy, rehabilitation, medical terms, conditions, treatments">
+  <meta name="author" content="Sachintha Sathsara">
+  
+  <title>Globalcare Physio – Knowledge for Better Movement</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-heartbeat"></i>
-                <span>Globalcare Physio</span>
-            </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#conditions" class="nav-link">Conditions</a>
-                <a href="#treatments" class="nav-link">Treatments</a>
-                <a href="#terms" class="nav-link">Medical Terms</a>
-                <a href="#articles" class="nav-link">Articles</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏥</div>
+        <span>Globalcare Physio</span>
+      </a>
+      
+      <nav class="nav">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="conditions.html" class="nav-link">Conditions</a>
+        <a href="treatments.html" class="nav-link">Treatments</a>
+        <a href="terms.html" class="nav-link">Medical Terms</a>
+        <a href="articles.html" class="nav-link">Articles</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <button class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content animate-fadeIn">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Educational Resource for Physiotherapy
         </div>
-    </nav>
-
-    <!-- Home Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Globalcare Physio – Knowledge for Better Movement</h1>
-            <p class="hero-description">
-                Empowering physiotherapy students, patients, and healthcare professionals with evidence-based 
-                knowledge about rehabilitation, movement science, and physical health.
-            </p>
-            <div class="hero-buttons">
-                <a href="#conditions" class="btn btn-primary">Explore Conditions</a>
-                <a href="#articles" class="btn btn-secondary">Read Articles</a>
-            </div>
+        <h1 class="hero-title">
+          <span class="gradient-text">Knowledge</span> for<br>Better Movement
+        </h1>
+        <p class="hero-description">
+          Your trusted source for physiotherapy education. Explore conditions, treatments, 
+          medical terminology, and evidence-based articles designed for students, patients, 
+          and healthcare professionals.
+        </p>
+        <div class="hero-buttons">
+          <a href="conditions.html" class="btn btn-primary btn-lg">
+            Explore Conditions
+          </a>
+          <a href="articles.html" class="btn btn-outline btn-lg">
+            Read Articles
+          </a>
         </div>
-        <div class="hero-image">
-            <i class="fas fa-user-md"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section bg-pattern">
+    <div class="container">
+      <div class="text-center mb-8">
+        <h2>What You'll Find Here</h2>
+        <p class="text-lg text-secondary" style="max-width: 600px; margin: 1rem auto 0;">
+          Comprehensive resources to support your physiotherapy learning journey
+        </p>
+      </div>
+      
+      <div class="grid grid-4" id="features-grid">
+        <div class="card feature-card animate-fadeIn delay-1">
+          <div class="feature-icon">📚</div>
+          <h3 class="card-title">Medical Terms</h3>
+          <p class="card-text">Alphabetically organized physiotherapy and medical terminology with clear definitions.</p>
         </div>
-    </section>
-
-    <!-- Conditions Section -->
-    <section id="conditions" class="conditions-section">
-        <div class="container">
-            <h2 class="section-title">Common Physiotherapy Conditions</h2>
-            <p class="section-subtitle">Understanding various conditions that physiotherapy can help treat</p>
-            
-            <div class="conditions-grid">
-                <div class="condition-card">
-                    <div class="condition-icon">
-                        <i class="fas fa-back-pain"></i>
-                    </div>
-                    <h3>Low Back Pain</h3>
-                    <p>Common condition affecting the lower spine, often caused by muscle strain, poor posture, or disc problems.</p>
-                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="condition-card">
-                    <div class="condition-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>Stroke Rehabilitation</h3>
-                    <p>Specialized therapy to help stroke survivors regain movement, strength, and independence.</p>
-                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="condition-card">
-                    <div class="condition-icon">
-                        <i class="fas fa-running"></i>
-                    </div>
-                    <h3>Sports Injuries</h3>
-                    <p>Treatment and prevention of injuries related to sports and physical activities.</p>
-                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="condition-card">
-                    <div class="condition-icon">
-                        <i class="fas fa-bone"></i>
-                    </div>
-                    <h3>Osteoarthritis</h3>
-                    <p>Degenerative joint condition causing pain and stiffness, commonly affecting knees and hips.</p>
-                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="condition-card">
-                    <div class="condition-icon">
-                        <i class="fas fa-head-side-virus"></i>
-                    </div>
-                    <h3>Neck Pain</h3>
-                    <p>Discomfort or stiffness in the cervical spine area, often related to posture or muscle tension.</p>
-                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="condition-card">
-                    <div class="condition-icon">
-                        <i class="fas fa-hand-paper"></i>
-                    </div>
-                    <h3>Frozen Shoulder</h3>
-                    <p>Condition causing pain and limited range of motion in the shoulder joint.</p>
-                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
+        
+        <div class="card feature-card animate-fadeIn delay-2">
+          <div class="feature-icon">🩺</div>
+          <h3 class="card-title">Conditions</h3>
+          <p class="card-text">Common physiotherapy conditions with symptoms, causes, and treatment approaches.</p>
         </div>
-    </section>
-
-    <!-- Treatments Section -->
-    <section id="treatments" class="treatments-section">
-        <div class="container">
-            <h2 class="section-title">Treatments & Techniques</h2>
-            <p class="section-subtitle">Evidence-based physiotherapy approaches for optimal recovery</p>
-            
-            <div class="treatments-grid">
-                <div class="treatment-card">
-                    <div class="treatment-icon">
-                        <i class="fas fa-dumbbell"></i>
-                    </div>
-                    <h3>Exercise Therapy</h3>
-                    <p>Targeted exercises to improve strength, flexibility, and function. Customized programs for individual needs.</p>
-                </div>
-
-                <div class="treatment-card">
-                    <div class="treatment-icon">
-                        <i class="fas fa-hands"></i>
-                    </div>
-                    <h3>Manual Therapy</h3>
-                    <p>Hands-on techniques including joint mobilization, soft tissue massage, and manipulation.</p>
-                </div>
-
-                <div class="treatment-card">
-                    <div class="treatment-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Electrotherapy</h3>
-                    <p>Use of electrical stimulation, ultrasound, and other modalities for pain relief and healing.</p>
-                </div>
-
-                <div class="treatment-card">
-                    <div class="treatment-icon">
-                        <i class="fas fa-user-check"></i>
-                    </div>
-                    <h3>Postural Correction</h3>
-                    <p>Assessment and correction of postural imbalances to prevent and treat musculoskeletal problems.</p>
-                </div>
-
-                <div class="treatment-card">
-                    <div class="treatment-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Rehabilitation Programs</h3>
-                    <p>Comprehensive recovery plans tailored to specific conditions and individual goals.</p>
-                </div>
-            </div>
+        
+        <div class="card feature-card animate-fadeIn delay-3">
+          <div class="feature-icon">💪</div>
+          <h3 class="card-title">Treatments</h3>
+          <p class="card-text">Evidence-based treatment techniques and therapeutic approaches used in practice.</p>
         </div>
-    </section>
-
-    <!-- Medical Terms Section -->
-    <section id="terms" class="terms-section">
-        <div class="container">
-            <h2 class="section-title">Medical Terms Glossary</h2>
-            <p class="section-subtitle">Understanding physiotherapy terminology in simple language</p>
-            
-            <div class="search-container">
-                <input type="text" id="term-search" placeholder="Search for medical terms..." class="search-input">
-                <button class="search-btn"><i class="fas fa-search"></i></button>
-            </div>
-
-            <div class="terms-alphabet">
-                <button class="alphabet-btn active" data-letter="all">All</button>
-                <button class="alphabet-btn" data-letter="A">A</button>
-                <button class="alphabet-btn" data-letter="B">B</button>
-                <button class="alphabet-btn" data-letter="C">C</button>
-                <button class="alphabet-btn" data-letter="D">D</button>
-                <button class="alphabet-btn" data-letter="E">E</button>
-                <button class="alphabet-btn" data-letter="F">F</button>
-                <button class="alphabet-btn" data-letter="G">G</button>
-                <button class="alphabet-btn" data-letter="H">H</button>
-                <button class="alphabet-btn" data-letter="I">I</button>
-                <button class="alphabet-btn" data-letter="J">J</button>
-                <button class="alphabet-btn" data-letter="K">K</button>
-                <button class="alphabet-btn" data-letter="L">L</button>
-                <button class="alphabet-btn" data-letter="M">M</button>
-                <button class="alphabet-btn" data-letter="N">N</button>
-                <button class="alphabet-btn" data-letter="O">O</button>
-                <button class="alphabet-btn" data-letter="P">P</button>
-                <button class="alphabet-btn" data-letter="Q">Q</button>
-                <button class="alphabet-btn" data-letter="R">R</button>
-                <button class="alphabet-btn" data-letter="S">S</button>
-                <button class="alphabet-btn" data-letter="T">T</button>
-                <button class="alphabet-btn" data-letter="U">U</button>
-                <button class="alphabet-btn" data-letter="V">V</button>
-                <button class="alphabet-btn" data-letter="W">W</button>
-                <button class="alphabet-btn" data-letter="X">X</button>
-                <button class="alphabet-btn" data-letter="Y">Y</button>
-                <button class="alphabet-btn" data-letter="Z">Z</button>
-            </div>
-
-            <div class="terms-grid" id="terms-grid">
-                <div class="term-card" data-letter="R">
-                    <h3>Range of Motion (ROM)</h3>
-                    <p>The full movement potential of a joint, usually its range of flexion and extension.</p>
-                </div>
-
-                <div class="term-card" data-letter="M">
-                    <h3>Mobilization</h3>
-                    <p>Manual therapy techniques to restore joint movement and reduce pain.</p>
-                </div>
-
-                <div class="term-card" data-letter="P">
-                    <h3>Proprioception</h3>
-                    <p>The body's ability to sense its position, movement, and action in space.</p>
-                </div>
-
-                <div class="term-card" data-letter="I">
-                    <h3>Isometric</h3>
-                    <p>Muscle contraction without movement, where the muscle length remains constant.</p>
-                </div>
-
-                <div class="term-card" data-letter="E">
-                    <h3>Eccentric</h3>
-                    <p>Muscle contraction where the muscle lengthens while under tension.</p>
-                </div>
-
-                <div class="term-card" data-letter="C">
-                    <h3>Concentric</h3>
-                    <p>Muscle contraction where the muscle shortens while generating force.</p>
-                </div>
-            </div>
+        
+        <div class="card feature-card animate-fadeIn delay-4">
+          <div class="feature-icon">📖</div>
+          <h3 class="card-title">Articles</h3>
+          <p class="card-text">Educational articles on rehabilitation, prevention, and physiotherapy topics.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Articles Section -->
-    <section id="articles" class="articles-section">
-        <div class="container">
-            <h2 class="section-title">Latest Articles</h2>
-            <p class="section-subtitle">Evidence-based insights on physiotherapy and rehabilitation</p>
-            
-            <div class="articles-grid">
-                <article class="article-card">
-                    <div class="article-image">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <div class="article-content">
-                        <h3>Role of Physiotherapy in Stroke Rehabilitation</h3>
-                        <p class="article-meta">
-                            <span class="author"><i class="fas fa-user"></i> Sachintha Sathsara</span>
-                            <span class="date"><i class="fas fa-calendar"></i> January 15, 2026</span>
-                            <span class="read-time"><i class="fas fa-clock"></i> 8 min read</span>
-                        </p>
-                        <p>Exploring how physiotherapy interventions help stroke survivors regain motor function and independence through targeted rehabilitation strategies.</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-
-                <article class="article-card">
-                    <div class="article-image">
-                        <i class="fas fa-user-check"></i>
-                    </div>
-                    <div class="article-content">
-                        <h3>Importance of Posture in Daily Life</h3>
-                        <p class="article-meta">
-                            <span class="author"><i class="fas fa-user"></i> Sachintha Sathsara</span>
-                            <span class="date"><i class="fas fa-calendar"></i> January 10, 2026</span>
-                            <span class="read-time"><i class="fas fa-clock"></i> 6 min read</span>
-                        </p>
-                        <p>Understanding how proper posture affects overall health and learning practical strategies to maintain optimal alignment throughout daily activities.</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-
-                <article class="article-card">
-                    <div class="article-image">
-                        <i class="fas fa-dumbbell"></i>
-                    </div>
-                    <div class="article-content">
-                        <h3>Benefits of Exercise Therapy</h3>
-                        <p class="article-meta">
-                            <span class="author"><i class="fas fa-user"></i> Sachintha Sathsara</span>
-                            <span class="date"><i class="fas fa-calendar"></i> January 5, 2026</span>
-                            <span class="read-time"><i class="fas fa-clock"></i> 7 min read</span>
-                        </p>
-                        <p>Discover how structured exercise programs can accelerate recovery, prevent injuries, and improve overall physical function.</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-            </div>
+  <!-- Featured Conditions -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-8">
+        <h2>Common Conditions</h2>
+        <p class="text-secondary">Explore physiotherapy conditions we frequently treat</p>
+      </div>
+      
+      <div class="grid grid-3" id="conditions-preview">
+        <!-- Loaded dynamically -->
+        <div class="loading-container" style="grid-column: 1 / -1;">
+          <div class="spinner"></div>
+          <span class="loading-text">Loading conditions...</span>
         </div>
-    </section>
+      </div>
+      
+      <div class="text-center mt-8">
+        <a href="conditions.html" class="btn btn-secondary">View All Conditions →</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="section-title">About Globalcare Physio</h2>
-                    <p class="about-intro">
-                        Hello! I'm <strong>Sachintha Sathsara</strong>, an undergraduate physiotherapy student 
-                        at the Faculty of Medicine, University of Colombo, Sri Lanka.
-                    </p>
-                    <p>
-                        My passion for rehabilitation, education, and evidence-based practice drives me to create 
-                        this educational platform. Globalcare Physio is dedicated to providing accessible, 
-                        accurate, and up-to-date information about physiotherapy concepts, conditions, and treatments.
-                    </p>
-                    <div class="mission-statement">
-                        <h3>Our Mission</h3>
-                        <p>
-                            To bridge the gap between complex physiotherapy knowledge and those who seek to understand it, 
-                            whether you're a student beginning your journey, a patient seeking information, or a healthcare 
-                            professional looking to refresh your knowledge.
-                        </p>
-                    </div>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Years of Study</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">50+</span>
-                            <span class="stat-label">Articles Planned</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">100+</span>
-                            <span class="stat-label">Medical Terms</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-            </div>
+  <!-- Latest Articles -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="text-center mb-8">
+        <h2>Latest Articles</h2>
+        <p class="text-secondary">Educational content for students and professionals</p>
+      </div>
+      
+      <div class="grid grid-3" id="articles-preview">
+        <!-- Loaded dynamically -->
+        <div class="loading-container" style="grid-column: 1 / -1;">
+          <div class="spinner"></div>
+          <span class="loading-text">Loading articles...</span>
         </div>
-    </section>
+      </div>
+      
+      <div class="text-center mt-8">
+        <a href="articles.html" class="btn btn-primary">Read All Articles →</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <h2 class="section-title">Contact Us</h2>
-            <p class="section-subtitle">Have questions or suggestions? I'd love to hear from you!</p>
-            
-            <div class="contact-content">
-                <div class="contact-form">
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
-                <div class="contact-info">
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>sachintha.globalcare@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Colombo, Sri Lanka</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-university"></i>
-                        <div>
-                            <h4>University</h4>
-                            <p>University of Colombo</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- CTA Section -->
+  <section class="section">
+    <div class="container">
+      <div class="card" style="background: linear-gradient(135deg, var(--primary-500), var(--secondary-500)); padding: 4rem; text-align: center;">
+        <h2 style="color: white; margin-bottom: 1rem;">Start Your Learning Journey</h2>
+        <p style="color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto 2rem;">
+          Whether you're a physiotherapy student, patient, or healthcare professional, 
+          our resources are designed to enhance your understanding of rehabilitation.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="terms.html" class="btn btn-lg" style="background: white; color: var(--primary-600);">
+            Explore Medical Terms
+          </a>
+          <a href="about.html" class="btn btn-lg" style="background: transparent; color: white; border: 2px solid white;">
+            Learn About Us
+          </a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Globalcare Physio</h3>
-                    <p>Knowledge for Better Movement</p>
-                    <p>Educational platform for physiotherapy students, patients, and healthcare professionals.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#conditions">Conditions</a></li>
-                        <li><a href="#treatments">Treatments</a></li>
-                        <li><a href="#terms">Medical Terms</a></li>
-                        <li><a href="#articles">Articles</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Use</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Globalcare Physio. Created by Sachintha Sathsara</p>
-                <p><strong>Disclaimer:</strong> Educational purpose only – not a substitute for medical advice. Always consult with healthcare professionals.</p>
-            </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">🏥</div>
+            <span>Globalcare Physio</span>
+          </a>
+          <p>Educational physiotherapy resource created to help students, patients, and healthcare professionals understand rehabilitation concepts.</p>
         </div>
-    </footer>
+        
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="conditions.html">Conditions</a></li>
+            <li><a href="treatments.html">Treatments</a></li>
+            <li><a href="terms.html">Medical Terms</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="articles.html">Articles</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Connect</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:contact@globalcarephysio.com">Email Us</a></li>
+            <li><a href="about.html">About Author</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          © 2026 Globalcare Physio. Created by Sachintha Sathsara.
+        </p>
+        <p class="footer-disclaimer">
+          Educational purpose only – not a substitute for professional medical advice.
+        </p>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-<script>
-// ===== NAVIGATION FUNCTIONALITY =====
-document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-    
-    hamburger.addEventListener('click', function() {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
+  <!-- Scripts -->
+  <script src="js/content-loader.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/theme.js"></script>
+  <script>
+    // Load homepage content
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Load conditions preview (first 3)
+      const conditions = await contentLoader.loadConditions();
+      const conditionsPreview = conditions.slice(0, 3);
+      renderToContainer('conditions-preview', conditionsPreview, Renderer.conditionCard);
+      
+      // Load articles preview (first 3)
+      const articles = await contentLoader.loadArticles();
+      const articlesPreview = articles.slice(0, 3);
+      renderToContainer('articles-preview', articlesPreview, Renderer.articleCard);
     });
-    
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
-    });
-    
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-    
-    // Add scroll effect to navigation
-    window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-        } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = 'none';
-        }
-    });
-});
-
-// ===== BACK TO TOP BUTTON =====
-const backToTopButton = document.getElementById('back-to-top');
-
-window.addEventListener('scroll', function() {
-    if (window.pageYOffset > 300) {
-        backToTopButton.classList.add('show');
-    } else {
-        backToTopButton.classList.remove('show');
-    }
-});
-
-backToTopButton.addEventListener('click', function() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-// ===== MEDICAL TERMS SEARCH & FILTER =====
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('term-search');
-    const alphabetButtons = document.querySelectorAll('.alphabet-btn');
-    const termCards = document.querySelectorAll('.term-card');
-    
-    // Search functionality
-    searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
-        
-        termCards.forEach(card => {
-            const termName = card.querySelector('h3').textContent.toLowerCase();
-            const termDefinition = card.querySelector('p').textContent.toLowerCase();
-            
-            if (termName.includes(searchTerm) || termDefinition.includes(searchTerm)) {
-                card.style.display = 'block';
-                card.style.animation = 'fadeInUp 0.5s ease-out';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    });
-    
-    // Alphabet filtering
-    alphabetButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            alphabetButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            const selectedLetter = this.getAttribute('data-letter');
-            
-            termCards.forEach(card => {
-                const cardLetter = card.getAttribute('data-letter');
-                
-                if (selectedLetter === 'all' || cardLetter === selectedLetter) {
-                    card.style.display = 'block';
-                    card.style.animation = 'fadeInUp 0.5s ease-out';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
-});
-
-// ===== CONTACT FORM HANDLING =====
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contact-form');
-    
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(this);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const message = formData.get('message');
-        
-        // Simple validation
-        if (!name || !email || !message) {
-            showNotification('Please fill in all fields.', 'error');
-            return;
-        }
-        
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            showNotification('Please enter a valid email address.', 'error');
-            return;
-        }
-        
-        // Simulate form submission
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
-        
-        // Simulate API call delay
-        setTimeout(() => {
-            showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
-            this.reset();
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, 2000);
-    });
-});
-
-// ===== NOTIFICATION SYSTEM =====
-function showNotification(message, type) {
-    // Remove existing notifications
-    const existingNotification = document.querySelector('.notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
-    
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
-        <span>${message}</span>
-        <button class="notification-close">&times;</button>
-    `;
-    
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: ${type === 'success' ? 'var(--medical-green)' : '#ef4444'};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        z-index: 10000;
-        animation: slideInRight 0.3s ease-out;
-        max-width: 400px;
-    `;
-    
-    notification.querySelector('.notification-close').style.cssText = `
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-        margin-left: auto;
-        padding: 0;
-        line-height: 1;
-    `;
-    
-    // Add to page
-    document.body.appendChild(notification);
-    
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.remove();
-        }
-    }, 5000);
-    
-    // Manual close
-    notification.querySelector('.notification-close').addEventListener('click', () => {
-        notification.remove();
-    });
-}
-
-// Add slide-in animation for notifications
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideInRight {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.animation = 'fadeInUp 0.8s ease-out';
-            entry.target.style.opacity = '1';
-        }
-    });
-}, observerOptions);
-
-// Observe elements for animation
-document.addEventListener('DOMContentLoaded', function() {
-    const animatedElements = document.querySelectorAll(
-        '.condition-card, .treatment-card, .article-card, .term-card, .about-content, .contact-content'
-    );
-    
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        observer.observe(el);
-    });
-});
-
-// ===== DARK MODE TOGGLE (BONUS FEATURE) =====
-function initializeDarkMode() {
-    // Check for saved dark mode preference or default to light mode
-    const darkModeToggle = document.createElement('button');
-    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-    darkModeToggle.className = 'dark-mode-toggle';
-    darkModeToggle.style.cssText = `
-        position: fixed;
-        bottom: 90px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        background: var(--dark-gray);
-        color: var(--white);
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.25rem;
-        box-shadow: var(--shadow-lg);
-        transition: all 0.3s ease;
-        z-index: 999;
-    `;
-    
-    document.body.appendChild(darkModeToggle);
-    
-    // Dark mode styles
-    const darkModeStyles = document.createElement('style');
-    darkModeStyles.textContent = `
-        body.dark-mode {
-            background: #0f172a;
-            color: #f1f5f9;
-        }
-        
-        body.dark-mode .navbar {
-            background: rgba(15, 23, 42, 0.95);
-            border-bottom-color: #334155;
-        }
-        
-        body.dark-mode .hero {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-        }
-        
-        body.dark-mode .section-title,
-        body.dark-mode .condition-card h3,
-        body.dark-mode .treatment-card h3,
-        body.dark-mode .article-content h3,
-        body.dark-mode .term-card h3,
-        body.dark-mode .info-item h4 {
-            color: #f1f5f9;
-        }
-        
-        body.dark-mode .hero-description,
-        body.dark-mode .section-subtitle,
-        body.dark-mode .condition-card p,
-        body.dark-mode .treatment-card p,
-        body.dark-mode .term-card p,
-        body.dark-mode .article-meta,
-        body.dark-mode .info-item p,
-        body.dark-mode .about-intro,
-        body.dark-mode .mission-statement p {
-            color: #cbd5e1;
-        }
-        
-        body.dark-mode .conditions-section,
-        body.dark-mode .terms-section,
-        body.dark-mode .about-section {
-            background: #1e293b;
-        }
-        
-        body.dark-mode .condition-card,
-        body.dark-mode .treatment-card,
-        body.dark-mode .article-card,
-        body.dark-mode .term-card,
-        body.dark-mode .contact-form,
-        body.dark-mode .info-item,
-        body.dark-mode .mission-statement {
-            background: #334155;
-            color: #f1f5f9;
-        }
-        
-        body.dark-mode .search-input,
-        body.dark-mode .form-group input,
-        body.dark-mode .form-group textarea {
-            background: #475569;
-            border-color: #64748b;
-            color: #f1f5f9;
-        }
-        
-        body.dark-mode .search-input::placeholder,
-        body.dark-mode .form-group input::placeholder,
-        body.dark-mode .form-group textarea::placeholder {
-            color: #94a3b8;
-        }
-        
-        body.dark-mode .alphabet-btn {
-            background: #475569;
-            border-color: #64748b;
-            color: #f1f5f9;
-        }
-        
-        body.dark-mode .alphabet-btn:hover,
-        body.dark-mode .alphabet-btn.active {
-            background: var(--primary-blue);
-            border-color: var(--primary-blue);
-        }
-        
-        body.dark-mode .dark-mode-toggle {
-            background: var(--white);
-            color: var(--dark-gray);
-        }
-        
-        body.dark-mode .dark-mode-toggle i {
-            color: var(--dark-gray);
-        }
-    `;
-    document.head.appendChild(darkModeStyles);
-    
-    // Toggle dark mode
-    darkModeToggle.addEventListener('click', function() {
-        document.body.classList.toggle('dark-mode');
-        const isDarkMode = document.body.classList.contains('dark-mode');
-        
-        // Update icon
-        this.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-        
-        // Save preference
-        localStorage.setItem('darkMode', isDarkMode);
-    });
-    
-    // Load saved preference
-    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-    if (savedDarkMode) {
-        document.body.classList.add('dark-mode');
-        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    }
-}
-
-// Initialize dark mode feature
-document.addEventListener('DOMContentLoaded', initializeDarkMode);
-
-// ===== ARTICLE FILTER (BONUS FEATURE) =====
-function initializeArticleFilter() {
-    // Add category filter buttons
-    const articlesSection = document.querySelector('.articles-section .container');
-    const filterContainer = document.createElement('div');
-    filterContainer.className = 'article-filters';
-    filterContainer.innerHTML = `
-        <button class="filter-btn active" data-category="all">All Articles</button>
-        <button class="filter-btn" data-category="stroke">Stroke</button>
-        <button class="filter-btn" data-category="posture">Posture</button>
-        <button class="filter-btn" data-category="exercise">Exercise</button>
-    `;
-    filterContainer.style.cssText = `
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin-bottom: 2rem;
-        flex-wrap: wrap;
-    `;
-    
-    articlesSection.insertBefore(filterContainer, articlesSection.querySelector('.articles-grid'));
-    
-    // Add filter button styles
-    const filterStyles = document.createElement('style');
-    filterStyles.textContent = `
-        .filter-btn {
-            padding: 0.5rem 1rem;
-            border: 2px solid var(--light-blue);
-            background: var(--white);
-            color: var(--text-dark);
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-        
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: var(--primary-blue);
-            color: var(--white);
-            border-color: var(--primary-blue);
-        }
-        
-        body.dark-mode .filter-btn {
-            background: #475569;
-            border-color: #64748b;
-            color: #f1f5f9;
-        }
-        
-        body.dark-mode .filter-btn:hover,
-        body.dark-mode .filter-btn.active {
-            background: var(--primary-blue);
-            border-color: var(--primary-blue);
-        }
-    `;
-    document.head.appendChild(filterStyles);
-    
-    // Add category data to articles
-    const articleCards = document.querySelectorAll('.article-card');
-    articleCards[0].setAttribute('data-category', 'stroke');
-    articleCards[1].setAttribute('data-category', 'posture');
-    articleCards[2].setAttribute('data-category', 'exercise');
-    
-    // Filter functionality
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            const selectedCategory = this.getAttribute('data-category');
-            
-            articleCards.forEach(card => {
-                const cardCategory = card.getAttribute('data-category');
-                
-                if (selectedCategory === 'all' || cardCategory === selectedCategory) {
-                    card.style.display = 'block';
-                    card.style.animation = 'fadeInUp 0.5s ease-out';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
-}
-
-// Initialize article filter
-document.addEventListener('DOMContentLoaded', initializeArticleFilter);
-
-// ===== PERFORMANCE OPTIMIZATION =====
-// Lazy loading for images (if any are added later)
-document.addEventListener('DOMContentLoaded', function() {
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-        
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            imageObserver.observe(img);
-        });
-    }
-});
-
-// ===== ERROR HANDLING =====
-window.addEventListener('error', function(e) {
-    console.error('Globalcare Physio Error:', e.error);
-    // You could send errors to a logging service here
-});
-
-// ===== CONSOLE WELCOME MESSAGE =====
-console.log(`
-🩺 Welcome to Globalcare Physio!
-📚 Educational Physiotherapy Website
-👨‍⚕️ Created by Sachintha Sathsara
-🏥 University of Colombo, Sri Lanka
-
-Thank you for visiting! This website is for educational purposes only.
-Always consult with healthcare professionals for medical advice.
-`);
-</script>
+  </script>
 </body>
 </html>
